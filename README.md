@@ -172,7 +172,11 @@ You can also open the project directly in **Qt Creator** and build and run it us
 
 ## 📸 Screenshots
 
-Screenshots will be added as the UI development progresses.
+<img width="1920" height="987" alt="image" src="https://github.com/user-attachments/assets/4a387cf9-ff9c-4c11-91b4-f2cc4554dc78" />
+<img width="1920" height="987" alt="image" src="https://github.com/user-attachments/assets/d81f4218-c82e-48ca-bc8a-73f0e54053af" />
+<img width="1920" height="987" alt="image" src="https://github.com/user-attachments/assets/f5faf75a-b666-4511-88e9-01770ef91ace" />
+
+
 
 ## 📚 Learning Focus
 
@@ -181,9 +185,7 @@ This project is part of my practical learning journey with **Qt, QML, and C++**,
 The current version intentionally keeps the interface in a single `main.qml` file to focus on learning the fundamentals of Qt Quick and QML before introducing separate reusable components.
 
 ## 👨‍💻 Author
-
-**AnandSwaroop**
-
+** Addanki Adinarayana Anand Swaroop **
 GitHub: `https://github.com/anand`
 
 ---
