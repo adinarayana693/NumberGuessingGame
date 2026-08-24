@@ -1,0 +1,96 @@
+# Qt / Qt Creator
+
+*.user
+*.user.*
+*.creator.user
+*.pro.user
+*.pro.user.*
+*.qmlproject.user
+
+# Qt Creator local settings
+.qtc_clangd/
+
+# Build directories
+
+build/
+build-*/
+cmake-build-*/
+*_build/
+out/
+
+# CMake generated files
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+Makefile
+compile_commands.json
+CTestTestfile.cmake
+
+# CMake generated install/export files
+*.cmake
+
+# Qt generated files
+
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.moc
+
+# Ninja
+
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
+
+# Compiled binaries / objects
+
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+*.exe
+
+# Debug / Release
+
+debug/
+release/
+
+# Qt deployment / generated output
+
+*.app
+*.apk
+*.aab
+
+# IDE / Editor
+
+.vscode/
+.idea/
+
+# Operating System
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+
+# Qt deployment / packaging
+
+*.dmg
+*.deb
+*.rpm
