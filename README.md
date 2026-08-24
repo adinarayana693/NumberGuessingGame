@@ -1,44 +1,63 @@
 # Qt Number Guessing Game
 
-A responsive Number Guessing Game built with **Qt Quick, QML, and C++** to explore responsive UI design, QML state management, user interaction, and game logic.
+A responsive Number Guessing Game built with **Qt Quick, QML, and C++** to explore responsive UI design, QML state management, user interaction, C++/QML integration, and game logic.
 
-The player tries to guess a randomly generated number, and the application provides feedback indicating whether the entered number is too high, too low, or correct.
+The player tries to guess a randomly generated number within a limited number of attempts. The application provides feedback indicating whether the entered number is too high, too low, or correct, while dynamically narrowing the valid guessing range.
 
-The user interface is currently written in a single `main.qml` file, while C++ is used for the application setup and integration with Qt.
+The user interface is implemented using QML, while the core game logic is handled by a C++ `GameController` exposed to QML using Qt's `Q_PROPERTY`, signals, slots, and context property mechanisms.
+
+---
 
 ## 🎯 Project Goals
 
 This project is being developed to strengthen practical knowledge of:
 
-* Qt Quick
-* QML
-* Responsive UI design
-* QML properties and state management
-* Signals and slots
-* User interaction
-* Game logic
-* Qt and C++ integration
-* Building a complete interface in a single QML file
+- Qt Quick
+- QML
+- C++
+- Responsive UI design
+- QML properties and property bindings
+- `Q_PROPERTY`
+- Signals and slots
+- Context properties
+- C++ and QML integration
+- User interaction
+- Game state management
+- Random number generation
+- Dynamic UI updates
+- Separation of UI and application logic
+
+---
 
 ## ✨ Features
 
-* Random number generation
-* User number input
-* Guess validation
-* Higher / lower feedback
-* Attempt counter
-* Game completion detection
-* Restart game functionality
-* Responsive UI layout
-* Clean and interactive interface
+- 🎲 Random secret number generation
+- 🔢 User number input
+- ✅ Input validation
+- 📉 Too-high feedback
+- 📈 Too-low feedback
+- 🎯 Dynamic guessing range
+- ⏳ Maximum attempt limit
+- 🔢 Remaining attempt counter
+- 🎉 Win detection
+- 💥 Game-over detection
+- 🔄 Restart / new game functionality
+- 💬 Dynamic feedback messages
+- 📱 Responsive UI layout
+- 🔗 C++ backend with QML frontend
+- ⚡ Reactive UI updates using Qt signals and properties
+
+---
 
 ## 🛠️ Technologies Used
 
-* **C++**
-* **Qt 6**
-* **Qt Quick**
-* **QML**
-* **CMake**
+- **C++**
+- **Qt 6**
+- **Qt Quick**
+- **QML**
+- **CMake**
+
+---
 
 ## 📂 Project Structure
 
@@ -47,26 +66,30 @@ QtNumberGuessingGame/
 │
 ├── CMakeLists.txt
 ├── main.cpp
-├── main.qml
+├── gamecontroller.h
+├── gamecontroller.cpp
+├── Main.qml
 ├── README.md
 └── .gitignore
-```
+
 
 The user interface and game-related QML logic are currently written in the single `main.qml` file. C++ is used for the application entry point and Qt integration.
 
-## 🎮 How the Game Works
-
-1. The application generates a random target number.
-2. The player enters a number.
-3. The player clicks the **Guess** button.
-4. The application compares the entered number with the target number.
-5. The player receives feedback:
-
-   * **Too High** — the guessed number is greater than the target.
-   * **Too Low** — the guessed number is smaller than the target.
-   * **Correct** — the player has found the target number.
-6. The number of attempts is updated after each valid guess.
-7. Once the correct number is found, the player can restart the game.
+🎮 How the Game Works
+- The application starts a new game.
+- A random target number is generated between 1 and 100.
+- The player enters a number.
+- The input is validated.
+- The application compares the entered number with the target number.
+- The player receives feedback:
+- Too High — the guessed number is greater than the target.
+- Too Low — the guessed number is smaller than the target.
+- Correct — the player has found the target number.
+- Each valid incorrect guess decreases the remaining attempts.
+- The valid guessing range is dynamically narrowed after each incorrect guess.
+- The player wins by finding the target number.
+- The game ends when all attempts are exhausted.
+- The player can start a new game using the reset functionality.
 
 ## 📱 Responsive UI
 
@@ -102,11 +125,19 @@ This project provides practical experience with:
 * Property bindings
 * Signals
 * Signal handlers
+* Slots
 * JavaScript functions in QML
 * Dynamic UI updates
 * Responsive sizing
 * Writing the complete interface in one QML file
-* Connecting QML with C++
+* Rectangle
+* Q_PROPERTY
+* Context properties
+* ListModel
+* ListView
+* C++/QML integration
+* C++ game state management
+* Random number generation
 
 ## 🚀 Future Improvements
 
@@ -180,9 +211,11 @@ You can also open the project directly in **Qt Creator** and build and run it us
 
 ## 📚 Learning Focus
 
-This project is part of my practical learning journey with **Qt, QML, and C++**, with a focus on building a responsive user interface, managing application state, handling user interaction, and connecting QML with C++.
+This project is part of my practical learning journey with Qt, QML, and C++, with a focus on building responsive user interfaces, managing application state, implementing game logic in C++, handling user interaction, and connecting QML with a C++ backend.
 
-The current version intentionally keeps the interface in a single `main.qml` file to focus on learning the fundamentals of Qt Quick and QML before introducing separate reusable components.
+The project initially started with the UI and game interaction implemented primarily in QML and is being progressively refactored toward a cleaner separation between the presentation layer and application logic.
+
+Through this project, I am gaining practical experience with how a C++ backend can expose application state and behavior to a QML frontend using Qt's object model, properties, signals, slots, and context properties.
 
 ## 👨‍💻 Author
 ** Addanki Adinarayana Anand Swaroop **
