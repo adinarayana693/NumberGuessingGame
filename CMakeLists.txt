@@ -24,6 +24,16 @@ qt_add_qml_module(appNumberGuess
         Main.qml
         RESOURCES .gitignore
         RESOURCES README.md
+        RESOURCES
+            Resources/fail.svg
+            Resources/Happy.svg
+            Resources/Normal.svg
+            SOURCES Backend/gamecontroller.h Backend/gamecontroller.cpp
+)
+
+target_include_directories(appNumberGuess PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/Backend
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
