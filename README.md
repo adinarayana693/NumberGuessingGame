@@ -186,7 +186,6 @@ The current version intentionally keeps the interface in a single `main.qml` fil
 
 ## 👨‍💻 Author
 ** Addanki Adinarayana Anand Swaroop **
-GitHub: `https://github.com/anand`
 
 ---
 
