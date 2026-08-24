@@ -230,14 +230,14 @@ Window{
                         Layout.fillWidth: true
                         height: 54
                         radius: 14
-                        color: root.feedbackType === "WIN" ? "#064e3b" :
-                               (root.feedbackType === "FAIL" ? "#450a0a" :
-                               (root.feedbackType === "TOO_HIGH" ? "#881337" :
-                               (root.feedbackType === "TOO_LOW" ? "#083344" : "#2e1065")))
-                        border.color: root.feedbackType === "WIN" ? "#10b981" :
-                                      (root.feedbackType === "FAIL" ? "#f43f5e" :
-                                      (root.feedbackType === "TOO_HIGH" ? "#fb7185" :
-                                      (root.feedbackType === "TOO_LOW" ? "#38bdf8" : "#8b5cf6")))
+                        color: gameController.feedbackType === "WIN" ? "#064e3b" :
+                               (gameController.feedbackType === "FAIL" ? "#450a0a" :
+                               (gameController.feedbackType === "TOO_HIGH" ? "#881337" :
+                               (gameController.feedbackType === "TOO_LOW" ? "#083344" : "#2e1065")))
+                        border.color: gameController.feedbackType === "WIN" ? "#10b981" :
+                                      (gameController.feedbackType === "FAIL" ? "#f43f5e" :
+                                      (gameController.feedbackType === "TOO_HIGH" ? "#fb7185" :
+                                      (gameController.feedbackType === "TOO_LOW" ? "#38bdf8" : "#8b5cf6")))
                         border.width: 1.5
 
                         Behavior on color { ColorAnimation { duration: 300 } }
@@ -251,7 +251,7 @@ Window{
 
                             Text {
                                 Layout.fillWidth: true
-                                text: root.feedbackText
+                                text: gameController.feedbackText
                                 color: "#ffffff"
                                 font.pixelSize: 15
                                 font.weight: Font.DemiBold
@@ -293,12 +293,11 @@ Window{
                                 enabled: gameController.gameState === "PLAYING"
 
                                 validator: IntValidator {
-                                    bottom: root.minBound
-                                    top: root.maxBound
+                                    bottom: gameController.currentMinRange
+                                    top: gameController.currentMaxRange
                                 }
-
-                                Keys.onReturnPressed: root.processGuess(text)
-                                Keys.onEnterPressed: root.processGuess(text)
+                                Keys.onReturnPressed: gameController.processGuess(text)
+                                Keys.onEnterPressed: gameController.processGuess(text)
                             }
                         }
 
@@ -330,7 +329,7 @@ Window{
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
-                                onClicked: root.processGuess(guessInput.text)
+                                onClicked: gameController.processGuess(guessInput.text)
                             }
 
                             scale: submitMouse.containsPress ? 0.96 : (submitMouse.containsMouse ? 1.03 : 1.0)
@@ -367,7 +366,7 @@ Window{
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
-                                onClicked: root.resetGame()
+                                onClicked: gameController.resetGame()
                             }
 
                             scale: resetMouse.containsPress ? 0.96 : (resetMouse.containsMouse ? 1.03 : 1.0)
