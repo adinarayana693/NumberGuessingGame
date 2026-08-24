@@ -22,13 +22,15 @@ qt_add_qml_module(appNumberGuess
     URI NumberGuess
     QML_FILES
         Main.qml
-        RESOURCES .gitignore
-        RESOURCES README.md
-        RESOURCES
-            Resources/fail.svg
-            Resources/Happy.svg
-            Resources/Normal.svg
-            SOURCES Backend/gamecontroller.h Backend/gamecontroller.cpp
+    SOURCES
+        Backend/gamecontroller.h
+        Backend/gamecontroller.cpp
+    RESOURCES
+        Resources/fail.svg
+        Resources/Happy.svg
+        Resources/Normal.svg
+        .gitignore
+        README.md
 )
 
 target_include_directories(appNumberGuess PRIVATE

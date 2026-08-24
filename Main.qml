@@ -14,6 +14,44 @@ Window{
     title: qsTr("Number Guessing Application")
     color: "#0a051b"
 
+    ListModel {
+        id: historyModel
+    }
+
+    function submitGuess(guessVal) {
+        var val = parseInt(guessVal)
+        if (isNaN(val) || val < 1 || val > 100) {
+            gameController.processGuess(guessVal)
+            guessInput.text = ""
+            return
+        }
+
+        gameController.processGuess(guessVal)
+
+        var resType = gameController.feedbackType
+        var resText = ""
+        if (resType === "WIN") {
+            resText = "CORRECT 🎉"
+        } else if (resType === "TOO_HIGH") {
+            resText = "TOO HIGH 📈"
+        } else if (resType === "TOO_LOW") {
+            resText = "TOO LOW 📉"
+        } else if (resType === "FAIL") {
+            resText = "FAILED 💀"
+        } else {
+            resText = "GUESS " + val
+        }
+
+        historyModel.insert(0, {
+            "attemptNum": historyModel.count + 1,
+            "guessValue": val.toString(),
+            "resultType": resType,
+            "resultText": resText
+        })
+
+        guessInput.text = ""
+    }
+
 
     //Background color with Gradient
 
@@ -97,7 +135,7 @@ Window{
                     width: attemptsLayout.implicitWidth + 24
                     radius: 19
                     color: "#1e1142"
-                    border.color: attemptsRemaining <= 2 ? "#f43f5e" : "#6d28d9"
+                    border.color: gameController.attemptsRemaining <= 2 ? "#f43f5e" : "#6d28d9"
                     border.width: 1.5
 
                     Behavior on border.color { ColorAnimation { duration: 300 } }
@@ -293,11 +331,11 @@ Window{
                                 enabled: gameController.gameState === "PLAYING"
 
                                 validator: IntValidator {
-                                    bottom: gameController.currentMinRange
-                                    top: gameController.currentMaxRange
+                                    bottom: 1
+                                    top: 100
                                 }
-                                Keys.onReturnPressed: gameController.processGuess(text)
-                                Keys.onEnterPressed: gameController.processGuess(text)
+                                Keys.onReturnPressed: root.submitGuess(text)
+                                Keys.onEnterPressed: root.submitGuess(text)
                             }
                         }
 
@@ -329,7 +367,7 @@ Window{
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
-                                onClicked: gameController.processGuess(guessInput.text)
+                                onClicked: root.submitGuess(guessInput.text)
                             }
 
                             scale: submitMouse.containsPress ? 0.96 : (submitMouse.containsMouse ? 1.03 : 1.0)
@@ -366,7 +404,11 @@ Window{
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
-                                onClicked: gameController.resetGame()
+                                onClicked: {
+                                    gameController.resetGame()
+                                    historyModel.clear()
+                                    guessInput.text = ""
+                                }
                             }
 
                             scale: resetMouse.containsPress ? 0.96 : (resetMouse.containsMouse ? 1.03 : 1.0)
